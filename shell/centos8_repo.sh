@@ -20,3 +20,4 @@ sudo sed -e 's|^metalink=|#metalink=|g' \
          -i.bak \
          /etc/yum.repos.d/epel.repo
 
+sudo yum makecache
