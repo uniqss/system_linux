@@ -1,9 +1,5 @@
 
-
-for /f "skip=1 tokens=1,2" %%i in ('docker ps -a --format "table {{.ID}}\t{{.Names}}"') do (
-	if "%%j" == "redis" docker rm -f %%i
-	if "%%j" == "mongodb" docker rm -f %%i
-	if "%%j" == "etcd" docker rm -f %%i
-	if "%%j" == "nats-main" docker rm -f %%i
-)
-
+docker rm -vf $(docker ps -a | grep "redis" | awk '{print $1}') 2>/dev/null || echo "container not found."
+docker rm -vf $(docker ps -a | grep "mongodb" | awk '{print $1}') 2>/dev/null || echo "container not found."
+docker rm -vf $(docker ps -a | grep "etcd" | awk '{print $1}') 2>/dev/null || echo "container not found."
+docker rm -vf $(docker ps -a | grep "nats-main" | awk '{print $1}') 2>/dev/null || echo "container not found."
