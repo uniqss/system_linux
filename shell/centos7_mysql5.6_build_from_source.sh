@@ -44,5 +44,5 @@ sudo service mysqld restart
 
 sudo bash -c 'printf "[mysql]\nsocket=/var/lib/mysql/mysql.sock\n\n[mysql_upgrade]\n\n[mysqladmin]\nsocket=/var/lib/mysql/mysql.sock\n\n[mysqlbinlog]\n\n[mysqlcheck]\n\n[mysqldump]\n\n[mysqlimport]\n\n[mysqlshow]\n\n[mysqlslap]\n\n" > /etc/my.cnf.d/mysql-clients.cnf'
 
-mysql -uroot -e "delete from mysql.user where User is NULL;delete from mysql.user where User = '';commit;flush privileges;"
+mysql -uroot -e "delete from mysql.user where User is NULL;delete from mysql.user where User = '';delete from mysql.user where Host <> 'localhost' and Host <> '127.0.0.1';commit;flush privileges;"
 
