@@ -4,7 +4,8 @@ mkdir -p ~/install/mysql/
 cd ~/install/mysql
 
 sudo yum install -y gcc-c++ cmake openssl openssl-devel readline readline-devel ncurses-devel perl perl-devel autoconf bison
-curl -LO https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.51.tar.gz
+#curl -LO https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.51.tar.gz
+curl -LO https://downloads.mysql.com/archives/get/p/23/file/mysql-5.6.51.tar.gz
 
 sudo groupadd mysql
 sudo useradd -r -g mysql -s /bin/false mysql
