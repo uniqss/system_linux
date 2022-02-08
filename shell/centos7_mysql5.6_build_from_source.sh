@@ -35,10 +35,14 @@ sudo bin/mysqld_safe --user=mysql &
 sudo cp support-files/mysql.server /etc/init.d/mysqld
 sudo bash -c 'echo "export PATH=/usr/local/mysql/bin:\$PATH" >> /etc/bashrc'
 
+sudo pkill mysqld
+
 sudo service mysqld stop
 sudo chmod 755 -R /var/lib/mysql/*
 sudo chmod 755 -R /var/lib/mysql/
 sudo service mysqld restart
 
 sudo bash -c 'printf "[mysql]\nsocket=/var/lib/mysql/mysql.sock\n\n[mysql_upgrade]\n\n[mysqladmin]\nsocket=/var/lib/mysql/mysql.sock\n\n[mysqlbinlog]\n\n[mysqlcheck]\n\n[mysqldump]\n\n[mysqlimport]\n\n[mysqlshow]\n\n[mysqlslap]\n\n" > /etc/my.cnf.d/mysql-clients.cnf'
+
+mysql -uroot -e "delete from mysql.user where User is NULL;delete from mysql.user where User = '';commit;flush privileges;"
 
